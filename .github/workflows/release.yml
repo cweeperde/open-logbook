@@ -1,0 +1,25 @@
+name: Release
+
+# Pushing a tag v<x.y.z> publishes a GitHub Release with that version's
+# CHANGELOG entry as notes. Installs follow main; tags let people pin a version.
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Check tag against package.json and CHANGELOG, write notes
+        run: node scripts/release-notes.mjs --tag "$GITHUB_REF_NAME" > notes.md
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" --title "open-logbook $GITHUB_REF_NAME" --notes-file notes.md --verify-tag

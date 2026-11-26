@@ -1,0 +1,41 @@
+{
+  "name": "open-logbook",
+  "version": "1.0.0",
+  "description": "Persistent memory for OpenCode: a small logbook of decisions, learnings, preferences and blockers, stored as Markdown outside your repos.",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "src",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "test": "node --test \"test/**/*.test.ts\"",
+    "test:bun": "bun test test/",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "memory",
+    "agent-memory"
+  ],
+  "author": "cweeper (https://github.com/cweeperde)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cweeperde/open-logbook.git"
+  },
+  "homepage": "https://github.com/cweeperde/open-logbook",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "devDependencies": {
+    "@opencode/plugin": "2.4.1",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
